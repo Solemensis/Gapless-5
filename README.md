@@ -1,7 +1,7 @@
 # Gapless 5 &nbsp; <img src="https://ccrma.stanford.edu/~regosen/gapless5.gif" width="123" height="51">
 
 - **BIG NOTE:** This is the forked and edited version of original gapless-5 by [regosen](https://github.com/regosen/) <br>
-- **What's Edited?:** Panning feature added, but only works for Web Audio API audios.
+- **What's Edited?:** Audio panning feature added, but only works for Web Audio API audios.
 
 ------------------------
 
