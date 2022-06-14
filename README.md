@@ -1,5 +1,8 @@
 # Gapless 5 &nbsp; <img src="https://ccrma.stanford.edu/~regosen/gapless5.gif" width="123" height="51">
 
+**NOTE** This is the forked and edited version of original gapless-5 by [regosen](https://github.com/regosen/)
+**What is edited in this version?:** Panning feature added, but only works for Web Audio API audios.
+
 A gapless JavaScript/CSS audio player for HTML5
 
 **PROBLEM**: There are 2 modern APIs for playing audio through the web, and both of them have problems:
@@ -13,7 +16,7 @@ A gapless JavaScript/CSS audio player for HTML5
 
 ## Demos
 
-The following sites utilize Gapless 5.  If you'd like to be featured here, please contact the repo owner or start a new issue!
+The following sites utilize Gapless 5. If you'd like to be featured here, please contact the repo owner or start a new issue!
 
 - <b>Gapless 5 Demonstration Page:</b> Utilizes key mappings for cueing and other features. <br/>https://ccrma.stanford.edu/~regosen/gapless5
 
@@ -41,29 +44,33 @@ The following sites utilize Gapless 5.  If you'd like to be featured here, pleas
 - Firefox
 - Other browers (UI untested, but they probably work as well)
 
-*NOTE for Boostrap users: Bootstrap's CSS will mess up the optional built-in UI.  If you don't need Bootstrap in its entirety, try using Twitter customize to get just the subset of rules you need.*
+_NOTE for Boostrap users: Bootstrap's CSS will mess up the optional built-in UI. If you don't need Bootstrap in its entirety, try using Twitter customize to get just the subset of rules you need._
 
 ## Getting Started
+
 ### Using npm
 
 1. Install the [npm package](https://www.npmjs.com/package/@regosen/gapless-5):
+
 ```shell
 $ npm install @regosen/gapless-5
 ```
 
 2. Import `Gapless5` from the module:
+
 ```js
-const { Gapless5 } = require('@regosen/gapless-5');
+const { Gapless5 } = require("@regosen/gapless-5");
 ```
 
 ### Using direct HTML
 
 A. If not using built-in UI, just add and reference `Gapless5.js` from your HTML head.
+
 ```html
 <script src="gapless5.js" language="JavaScript" type="text/javascript"></script>
 ```
 
-B. If using the built-in UI, add and reference `Gapless5.js` and `Gapless5.css`.  Also, create a `<div>` or `<span>` element where you want the player to appear.  Give it a particular id.
+B. If using the built-in UI, add and reference `Gapless5.js` and `Gapless5.css`. Also, create a `<div>` or `<span>` element where you want the player to appear. Give it a particular id.
 
 ```html
 <link href="gapless5.css" rel="stylesheet" type="text/css" />
@@ -76,35 +83,38 @@ B. If using the built-in UI, add and reference `Gapless5.js` and `Gapless5.css`.
 ### How it Works
 
 1. Create a `Gapless5` object with an optional parameter object
-    - If you want the built-in UI, pass in the element ID as `guiId` under options.
+   - If you want the built-in UI, pass in the element ID as `guiId` under options.
 2. Add tracks via options in constructor or `addTrack()`
 3. Optional stuff:
-    - Manipulate tracklist with `insertTrack()`, `removeTrack()`, and more.
-    - Register your own callbacks.
-    - Connect key presses to actions using `mapKeys()` or options in constructor.
+   - Manipulate tracklist with `insertTrack()`, `removeTrack()`, and more.
+   - Register your own callbacks.
+   - Connect key presses to actions using `mapKeys()` or options in constructor.
 
 ```js
-const player = new Gapless5({ guiId: 'gapless5-player-id' });
+const player = new Gapless5({ guiId: "gapless5-player-id" });
 
 // You can add tracks by relative or absolute URL:
-player.addTrack('audio/song1.mp3');
-player.addTrack('https://my-audio-site.org/song2.m4a');
+player.addTrack("audio/song1.mp3");
+player.addTrack("https://my-audio-site.org/song2.m4a");
 
 // You can also let the user upload tracks from a file loader like this:
-const files = document.getElementById('my-file-input').files;
-files.forEach(file => {
+const files = document.getElementById("my-file-input").files;
+files.forEach((file) => {
   player.addTrack(URL.createObjectURL(file)); // this creates a 'blob://' URL
 });
 player.play();
 ```
+
 _If you want the user to upload tracks from a file loader, here's an example of that:_
+
 ```html
 <form>
-  <input type="file" id="my-file-input" accept="audio/*">
+  <input type="file" id="my-file-input" accept="audio/*" />
 </form>
 ```
 
 ### Options
+
 These can be passed into a `Gapless5` constructor, or (with the exception of `tracks` and `guiId`) set later on the object.
 
 - **guiId**
@@ -139,11 +149,11 @@ These can be passed into a `Gapless5` constructor, or (with the exception of `tr
   - if you don't care about gapless playback, set useWebAudio to false for better performance
 - **loadLimit**
   - default = no limit
-  - limits how many tracks can be loaded at once.  If you have a large playlist, set to a low number (like 2-5) to save on memory
+  - limits how many tracks can be loaded at once. If you have a large playlist, set to a low number (like 2-5) to save on memory
   - caveat: you will hear gaps/loading delays if you skip tracks quickly enough or jump to arbitrary tracks
 - **volume**
   - default = 1.0 (0 = silent, 1.0 = loudest)
-- **pan**
+- **pan** (Works only with Web Audio API)
   - default = 0 (0 = center, -1.0 = 100% left, 1.0 = 100% right)
 - **playbackRate**
   - default = 1.0
@@ -158,17 +168,19 @@ Example:
 
 ```js
 const player = new Gapless5({
-  tracks: ['loop1.mp3', 'loop2.mp3'],
+  tracks: ["loop1.mp3", "loop2.mp3"],
   loop: true,
   loadLimit: 2,
-  mapKeys: {prev: 'a', playpause: 's', stop: 'd', next: 'f'},
+  mapKeys: { prev: "a", playpause: "s", stop: "d", next: "f" },
 });
 ```
 
 ### Functions
+
 You can call these functions on `Gapless5` objects.
 
 #### Parameterized Functions:
+
 - **addTrack(audioPath)**
   - adds track to end of playlist
   - `audioPath`: path to audio file(s) or blob URL(s), see examples above
@@ -190,7 +202,7 @@ You can call these functions on `Gapless5` objects.
   - updates the current position (in milliseconds)
 - **setVolume(volume)**
   - updates the volume in real time (between 0 and 1)
-- **setPan(pan)**
+- **setPan(pan)** (Works only with Web Audio API)
   - updates the pan in real time (between -1 and 1)
 - **setPlaybackRate(playbackRate)**
   - updates the playback speed in real time (see `playbackRate` option)
@@ -199,6 +211,7 @@ You can call these functions on `Gapless5` objects.
   - `jsonMapping` maps an action to a key, see example code below
 
 #### Accessors:
+
 - **isShuffled()**
   - returns true if shuffled
 - **getTracks()**
@@ -213,7 +226,8 @@ You can call these functions on `Gapless5` objects.
 
 #### Actions (can be mapped to keys via `mapKeys`):
 
-*These correspond to built-in UI buttons*
+_These correspond to built-in UI buttons_
+
 - **prev()**: matches behavior of "prev" button (scrubs to start if you've progressed into a track)
 - **playpause()**: matches behavior of "play/pause" button
 - **stop()**: matches behavior of "stop" button
@@ -221,7 +235,8 @@ You can call these functions on `Gapless5` objects.
   - subsequent shuffles will be different each time
 - **next()**: matches behavior of "next" button
 
-*These do not correspond to built-in UI buttons*
+_These do not correspond to built-in UI buttons_
+
 - **prevtrack()**: unlike "prev" button, this will always jump to the previous track
 - **cue()**: play from start
 - **play()**: non-togglable "play"
@@ -231,32 +246,35 @@ You can call these functions on `Gapless5` objects.
 - **removeAllTracks()**: clears entire playlist
 
 Examples:
+
 ```js
-player.mapKeys({cue: '7', stop: '8', next: '9'});
+player.mapKeys({ cue: "7", stop: "8", next: "9" });
 
 player.play();
 player.pause();
 
 // indexes start at 0
-player.replaceTrack(0, 'audio/song1_alt.flac');
-player.insertTrack(1, 'audio/transition.wav');
+player.replaceTrack(0, "audio/song1_alt.flac");
+player.insertTrack(1, "audio/transition.wav");
 
 player.gotoTrack(1);
-player.gotoTrack('audio/song1_alt.flac'); // can also goto track by path
+player.gotoTrack("audio/song1_alt.flac"); // can also goto track by path
 
 player.removeTrack(2);
-player.removeTrack('audio/transition.wav'); // can also remove track by path
+player.removeTrack("audio/transition.wav"); // can also remove track by path
 player.removeAllTracks();
 ```
+
 ### Callbacks
-You can set these on a `Gapless5` object.  All callbacks include the affected track's audio path except where indicated.
+
+You can set these on a `Gapless5` object. All callbacks include the affected track's audio path except where indicated.
 
 ```ts
 // play requested by user
 onplayrequest = (track_path: string) => void
 
 // play actually starts
-onplay = (track_path: string) => void 
+onplay = (track_path: string) => void
 
 // play is paused
 onpause = (track_path: string) => void
@@ -275,7 +293,7 @@ onprev = (from_track: string, to_track: string) => void
 onnext = (from_track: string, to_track: string) => void
 
 // loading started
-onloadstart = (track_path: string) => void 
+onloadstart = (track_path: string) => void
 
 // loading completed
 onload = (track_path: string) => void
@@ -300,9 +318,14 @@ function nextCallback(from_track, to_track) {
   console.log(`User skipped to next track (from ${from_track} to ${to_track})`);
 }
 
-const player = new Gapless5({guiId: 'gapless5-player-id', tracks: ['track1.mp3', 'track2.mp3']});
+const player = new Gapless5({
+  guiId: "gapless5-player-id",
+  tracks: ["track1.mp3", "track2.mp3"],
+});
 player.onnext = nextCallback;
-player.onplay = function (track_path) { console.log(`Now playing ${track_path}`); };
+player.onplay = function (track_path) {
+  console.log(`Now playing ${track_path}`);
+};
 ```
 
 ## License
