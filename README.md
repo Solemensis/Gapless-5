@@ -2,6 +2,7 @@
 
 - **BIG NOTE:** This is the forked and edited version of original gapless-5 by [regosen](https://github.com/regosen/) <br>
 - **What's Edited?:** Audio panning feature added, but only works for Web Audio API audios.
+- **How To Pan?:** You can find info about it at the bottom "Options" and "Parameterized Functions" sections.
 
 ------------------------
 
