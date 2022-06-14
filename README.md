@@ -1,6 +1,6 @@
 # Gapless 5 &nbsp; <img src="https://ccrma.stanford.edu/~regosen/gapless5.gif" width="123" height="51">
 
-**NOTE** This is the forked and edited version of original gapless-5 by [regosen](https://github.com/regosen/)
+**NOTE** This is the forked and edited version of original gapless-5 by [regosen](https://github.com/regosen/) <br>
 **What is edited in this version?:** Panning feature added, but only works for Web Audio API audios.
 
 A gapless JavaScript/CSS audio player for HTML5
