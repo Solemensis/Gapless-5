@@ -3,8 +3,7 @@
 - **BIG NOTE:** This is the forked and edited version of original gapless-5 by [regosen](https://github.com/regosen/) <br>
 - **What's Edited?:** Panning feature added, but only works for Web Audio API audios.
 
-
-
+------------------------
 
 A gapless JavaScript/CSS audio player for HTML5
 
