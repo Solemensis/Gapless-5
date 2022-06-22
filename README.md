@@ -25,6 +25,8 @@ The following sites utilize Gapless 5. If you'd like to be featured here, please
 
 - <b>THE402:</b> An electronic music looping experience. <br/>https://the402.wertstahl.de/player
 
+- <b>Woodhelm:</b> A live ambience mixing website. <br/>https://solemensis.github.io/Woodhelm/
+
 - <b>Bernardo.fm:</b> Featuring electronic and hip-hop artists. <br/>https://beta.bernardo.fm/#!page=music
 
 - <b>This is Nerdpop:</b> Interactive listening page for Zen Finger Painting's indie pop album. <br/>http://www.zenfingerpainting.com
